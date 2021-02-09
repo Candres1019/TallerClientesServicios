@@ -1,4 +1,4 @@
-# TallerHeroku _ SparkWeb
+# Taller Clientes y Servicios
 
 Descripcion
 
@@ -24,4 +24,4 @@ Descripcion
 * **Andres Mateo Calderón Ortega** - [Candres1019](https://github.com/Candres1019)
 
 # Licencia
-Este proyecto está licenciado bajo la GNU v3.0 - ver el archivo [LICENSE.md](https://github.com/Candres1019/TallerHeroku/blob/main/LICENSE) para más detalles
+Este proyecto está licenciado bajo la GNU v3.0 - ver el archivo [LICENSE.md](https://github.com/Candres1019/TallerClientesyServicios---AREP/blob/master/LICENSE) para más detalles
