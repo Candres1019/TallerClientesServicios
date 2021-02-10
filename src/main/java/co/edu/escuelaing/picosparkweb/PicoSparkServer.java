@@ -1,15 +1,13 @@
 package co.edu.escuelaing.picosparkweb;
 
 import co.edu.escuelaing.httpserver.HttpServer;
-import com.sun.deploy.net.HttpRequest;
-import com.sun.deploy.net.HttpResponse;
-
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
-import java.util.function.Supplier;
 
 public class PicoSparkServer implements Processor {
 

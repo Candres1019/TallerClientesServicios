@@ -3,9 +3,9 @@ package co.edu.escuelaing.picosparkweb;
 
 // fachada de comandos para publicar sus servicios como clase Spark
 
-import com.sun.deploy.net.HttpRequest;
-import com.sun.deploy.net.HttpResponse;
 import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.function.BiFunction;
 
 public class PicoSpark {
