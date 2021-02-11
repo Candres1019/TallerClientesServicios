@@ -18,11 +18,9 @@ public class DocumentPicoSparkReader {
     private static final String contentCss = "Content-Type: text/css";
     private static final String contentJs = "Content-Type: text/javascript";
     private static final String contentHtml = "Content-Type: text/html";
-    private static final String contentImg = "Content-Type: image/png \r\n";
 
     /**
-     * Clase encargada de interpretar que tipo de archivo se esta solicitando, y asignarle su tipo de lectura
-     * respectiva.
+     *
      * @param clientSocket -
      */
     public static void imageReader(Socket clientSocket){
@@ -32,7 +30,7 @@ public class DocumentPicoSparkReader {
             DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
             ImageIO.write(bufferedImage, "PNG", byteArrayOutputStream);
             dataOutputStream.writeBytes( "HTTP/1.1 200 \r\n");
-            dataOutputStream.writeBytes(contentImg);
+            dataOutputStream.writeBytes("Content-Type: image/jpeg \r\n");
             dataOutputStream.writeBytes("\r\n");
             dataOutputStream.write(byteArrayOutputStream.toByteArray());
         } catch (IOException e) {
@@ -41,9 +39,8 @@ public class DocumentPicoSparkReader {
     }
 
     /**
-     * Clase encargada de interpretar que tipo de archivo se esta solicitando, y asignarle su tipo de lectura
-     * respectiva.
-     * @param clientSocket - clientSocket para extrer el OutputStream
+     *
+     * @param clientSocket -
      */
     public static void fileReader(Socket clientSocket, String tipo){
         try {
@@ -67,16 +64,23 @@ public class DocumentPicoSparkReader {
             File archivo = new File(temp);
             FileReader reader = new FileReader(archivo);
             BufferedReader bufferedReader = new BufferedReader(reader);
-            PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream());
-            printWriter.println("HTTP/1.1 200 OK");
-            printWriter.println(contenT);
+            /*PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream());*/
+            DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+            dataOutputStream.writeBytes("HTTP/1.1 200 OK");
+            //printWriter.println("HTTP/1.1 200 OK");
+            dataOutputStream.writeBytes(contenT);
+            //printWriter.println(contenT);
             String linea;
             while ((linea=bufferedReader.readLine()) != null){
-                printWriter.println(linea + "\r\n");
-                printWriter.println("\r\n");
+                System.out.println(linea);
+                //printWriter.println(linea + "\r\n");
+                //printWriter.println("\r\n");
+                dataOutputStream.writeBytes(linea + "\r\n");
+                dataOutputStream.writeBytes("\r\n");
             }
             bufferedReader.close();
-            printWriter.close();
+            //printWriter.close();
+            dataOutputStream.close();
         }catch (IOException e){
             e.printStackTrace();
         }
