@@ -69,6 +69,10 @@ public class CalculadoraEstadistica {
         return desviacionEstandar;
     }
 
+    /**
+     * Calcula la suma de los datos.
+     * @return - resultado de la suma.
+     */
     public Double calcularSuma(){
         this.suma = 0.0;
         Node head = datos.getHead();

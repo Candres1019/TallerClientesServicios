@@ -118,7 +118,7 @@ public class HttpServer {
 
     /**
      * Metodo para retornar un html de respuesta valido.
-     * @return
+     * @return -
      */
     public String validOkHtppResponse() {
         return "HTTP/1.1 200 OK\r\n"

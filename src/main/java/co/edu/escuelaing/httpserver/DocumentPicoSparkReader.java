@@ -45,6 +45,7 @@ public class DocumentPicoSparkReader {
     /**
      * Metodo para leer archivos js, css y html
      * @param clientSocket - clientSocket.
+     * @param tipo - tipo de archivo.
      */
     public static void fileReader(Socket clientSocket, String tipo){
         try {

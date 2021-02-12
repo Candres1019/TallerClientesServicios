@@ -18,7 +18,7 @@ public class Node {
 
     /**
      * Metodo para solicitar los datos del nodo.
-     * @return
+     * @return -
      */
     public Double getDatos() {
         return datos;
@@ -34,7 +34,7 @@ public class Node {
 
     /**
      * Solicitar el nodo siguiente
-     * @return
+     * @return -
      */
     public Node getNext() {
         return next;

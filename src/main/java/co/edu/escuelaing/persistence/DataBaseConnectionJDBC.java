@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Clase que realiza la conexion con la base de datos.
+ */
 public class DataBaseConnectionJDBC {
 
     private static final String url = "jdbc:postgresql://ec2-34-198-31-223.compute-1.amazonaws.com:5432/d84nik8hj33vv0?ssl=true&sslmode=require";
@@ -13,7 +16,7 @@ public class DataBaseConnectionJDBC {
     private static Connection connection;
 
     /**
-     *
+     * Constructor de la clase DataBaseConnectionJDBC.
      */
     public DataBaseConnectionJDBC(){
         try {
@@ -27,8 +30,8 @@ public class DataBaseConnectionJDBC {
     }
 
     /**
-     *
-     * @return
+     * Retorna la conexion a la base de datos.
+     * @return - conexion.
      */
     public static Connection getConnection() {
         return connection;

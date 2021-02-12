@@ -52,7 +52,7 @@ public class DataBaseJDBC {
 
     /**
      * Metodo para consultar la base de datos
-     * @return - ArrayList de los datos que estan guardados, con formato <tr></tr> para insercion html directa.
+     * @return - ArrayList de los datos que estan guardados, con formato html para insercion html directa.
      */
     public ArrayList<String> consultarDatos(){
         if(connectionState) {

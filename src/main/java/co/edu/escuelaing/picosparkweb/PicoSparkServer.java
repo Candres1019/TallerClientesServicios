@@ -48,7 +48,7 @@ public class PicoSparkServer implements Processor {
 
     /**
      * Iniciar el servidor.
-     * @throws IOException
+     * @throws IOException - IOException.
      */
     public void startServer() throws IOException {
         hserver.startServer(httPort);
