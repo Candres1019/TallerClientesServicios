@@ -13,6 +13,7 @@ public class DataBaseJDBC {
 
     private static DataBaseConnectionJDBC dataBaseConnectionJDBC;
     private static Connection connection;
+    private boolean connectionState = false;
 
     /**
      * Constructor del handler de base de datos.
@@ -20,6 +21,7 @@ public class DataBaseJDBC {
     public DataBaseJDBC(){
         dataBaseConnectionJDBC = new DataBaseConnectionJDBC();
         connection = DataBaseConnectionJDBC.getConnection();
+        connectionState = connection != null;
     }
 
     /**
@@ -29,21 +31,23 @@ public class DataBaseJDBC {
      * @throws SQLException - Excepcion SQL
      */
     public void insertDatos (String datos, String suma) throws SQLException {
-        PreparedStatement registrarDatos = null;
-        String consultaRegistrarDatos = "INSERT INTO sumatoria(numerosingresados, suma) VALUES(?,?);";
-        try{
-            //Asignar Parametros
-            registrarDatos = connection.prepareStatement(consultaRegistrarDatos);
-            registrarDatos.setString(1, datos);
-            registrarDatos.setString(2, suma);
-            //Ejecutar
-            registrarDatos.execute();
-            //Guardar cambios
-            connection.commit();
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
+        if (connectionState) {
+            PreparedStatement registrarDatos = null;
+            String consultaRegistrarDatos = "INSERT INTO sumatoria(numerosingresados, suma) VALUES(?,?);";
+            try {
+                //Asignar Parametros
+                registrarDatos = connection.prepareStatement(consultaRegistrarDatos);
+                registrarDatos.setString(1, datos);
+                registrarDatos.setString(2, suma);
+                //Ejecutar
+                registrarDatos.execute();
+                //Guardar cambios
+                connection.commit();
+            } catch (Exception throwables) {
+                throwables.printStackTrace();
+            }
+            connection.close();
         }
-        connection.close();
     }
 
     /**
@@ -51,26 +55,31 @@ public class DataBaseJDBC {
      * @return - ArrayList de los datos que estan guardados, con formato <tr></tr> para insercion html directa.
      */
     public ArrayList<String> consultarDatos(){
-        try{
-            ArrayList<String> daticos = new ArrayList<String>();
-            PreparedStatement consultarDatos = null;
-            String consultaConsultarDatos = "SELECT numerosingresados, suma FROM sumatoria";
+        if(connectionState) {
+            try {
+                ArrayList<String> daticos = new ArrayList<String>();
+                PreparedStatement consultarDatos = null;
+                String consultaConsultarDatos = "SELECT numerosingresados, suma FROM sumatoria";
 
-            consultarDatos = connection.prepareStatement(consultaConsultarDatos);
-            ResultSet resultSet = consultarDatos.executeQuery();
+                consultarDatos = connection.prepareStatement(consultaConsultarDatos);
+                ResultSet resultSet = consultarDatos.executeQuery();
 
-            while(resultSet.next()) {
-                daticos.add("<tr>\n");
-                daticos.add("<th>" + resultSet.getString("numerosingresados") + "</th>\n");
-                daticos.add("<th>" + resultSet.getString("suma") + "</th>\n");
-                daticos.add("<tr>\n");
+                while (resultSet.next()) {
+                    daticos.add("<tr>\n");
+                    daticos.add("<th>" + resultSet.getString("numerosingresados") + "</th>\n");
+                    daticos.add("<th>" + resultSet.getString("suma") + "</th>\n");
+                    daticos.add("<tr>\n");
+                }
+
+                return daticos;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                return null;
             }
-
-            return daticos;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
         }
+        ArrayList<String> daticosTemp = new ArrayList<>();
+        daticosTemp.add("Couldnt Stablish a connection, Try Again");
+        return daticosTemp;
     }
 
 }
