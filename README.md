@@ -1,13 +1,30 @@
 # Taller Clientes y Servicios
 
-Descripcion
+Aplicativo Web diseñado en Java con el objetivo de crear un servidor HTTP, y un framework que reemplace
+al framework Spark, este servidor soporta peticiones get por medio de funciones lambda, para esta aplicación el servidor 
+devuelve archivos estáticos para ser visualizados por el usuario, estos archivos son almacenados internamente en el directorio 
+/src/main/resources
 
 ## Información Del Proyecto
 
 
+* La documentación del las clases y los metodos del proyecto se encuentran en el directorio adjunto /Javadoc/apidocs.
+
+* Haga click [aqui](./Reporte_TalleClientesyServicios.pdf) para ver el reporte del proyecto.
+
 ### Pre-Requisitos
 
+Para correr este proyecto necesita los siguientes programas instalados, se adjuntan los
+links de como descargarlos:
+> - [Como Instalar Java 11](https://www.oracle.com/co/java/technologies/javase-jdk11-downloads.html)
+> - [Como Instalar Apache Maven](http://maven.apache.org/download.html#Installation)
+
+Adicionalmente se recomienda tener descargado los siguientes programas:
+> - [Como Instalar Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+> - [Como Instalar HerokuCli](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+
 ### Despliegue en Heroku
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://afternoon-lake-64620.herokuapp.com/Apps/htmlShow)
 
 ### Calidad del código
 
@@ -15,9 +32,51 @@ Descripcion
 
 ### Instalación
 
+1. Clonación o Descarga del Proyecto:
+
+    - Para **Clonar** el proyecto utilice el siguiente comando en la ventana de comandos:
+       ```
+       git clone https://github.com/Candres1019/TallerClientesyServicios---AREP.git
+       ```
+    - Para **Descargar** el proyecto de click [aquí](https://github.com/Candres1019/TallerClientesyServicios---AREP/archive/master.zip),
+      la descarga comenzara de manera automática.
+      
+2. En una ventana de comandos ejecute el siguiente comando, dentro de la carpeta principal del proyecto:
+    ```
+    mvn package
+    ```
+
+3. Para ejecutar la aplicación de manera local utilizamos en la ventana de comandos el siguiente comando:
+    > ```
+    > java -cp target/classes co.edu.escuelaing.demoruntime.DemoRunTime
+    > ```
+    
+4. Para ver el aplicativo web de manera local ingresamos al siguiente enlace, dentro de este enlace encontrará los botones 
+   para realizar las acciones específicas (ver imagen, ver js, ver css, ver datos, insertar datos):
+    > ```
+    > http://localhost:3478/Apps/htmlShow
+    > ```
+
+5. Por defecto se creó la documentación JavaDoc y fue dejada en el directorio /Javadoc, si desea generar uno nuevo
+   utilice el siguiente comando, esta documentación quedará en el directorio /target/site/apidocs :
+   > ```
+   > mvn javadoc:javadoc
+   > ```
+
 ## Ejecución de pruebas
+En una ventana de comandos, utilice el siguiente comando:
+   ```
+    mvn test
+   ```
+Estas pruebas están hechas para asegurar el correcto funcionamiento de la conexión con la base de datos y la devolución 
+de archivos estáticos.
 
 ## Construido Con
+
+* [Java 8](https://www.java.com/es/) - Lenguaje de Programación.
+* [JUnit](https://junit.org/junit5/) - Pruebas de Unidad.
+* [Maven](https://maven.apache.org/) - Manejo de dependecias.
+* [IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/) - Entorno de Desarrollo.
 
 ## Authors
 
