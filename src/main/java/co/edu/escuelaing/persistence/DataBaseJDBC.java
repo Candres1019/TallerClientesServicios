@@ -61,8 +61,8 @@ public class DataBaseJDBC {
 
             while(resultSet.next()) {
                 daticos.add("<tr>\n");
-                daticos.add("<th>" + resultSet.getString("numerosingresados") + "</th>");
-                daticos.add("<th>" + resultSet.getString("suma") + "</th>");
+                daticos.add("<th>" + resultSet.getString("numerosingresados") + "</th>\n");
+                daticos.add("<th>" + resultSet.getString("suma") + "</th>\n");
                 daticos.add("<tr>\n");
             }
 

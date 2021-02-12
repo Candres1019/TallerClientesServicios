@@ -15,7 +15,7 @@ public class DemoRunTime {
      */
     public static void main(String[] args) throws IOException {
         port(getPort());
-        get("/hello", (req, resp) -> "Hello world! from lamba");
+        get("/hello", (req, resp) -> "Hello world! from lambda");
         get("/htmlShow", (req, resp) -> "index.html");
         get("/js/app.js", (req, resp) -> "app.js");
         get("/imagenShow", (req, resp) -> "teslaLogo.png");
