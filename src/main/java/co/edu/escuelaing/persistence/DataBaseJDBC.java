@@ -14,14 +14,20 @@ public class DataBaseJDBC {
     private static DataBaseConnectionJDBC dataBaseConnectionJDBC;
     private static Connection connection;
     private boolean connectionState = false;
+    private final int connectionTry = 3;
 
     /**
      * Constructor del handler de base de datos.
      */
     public DataBaseJDBC(){
-        dataBaseConnectionJDBC = new DataBaseConnectionJDBC();
-        connection = DataBaseConnectionJDBC.getConnection();
-        connectionState = connection != null;
+        for (int i=0; i<connectionTry; i++){
+            dataBaseConnectionJDBC = new DataBaseConnectionJDBC();
+            connection = DataBaseConnectionJDBC.getConnection();
+            connectionState = connection != null;
+            if (connectionState){
+                break;
+            }
+        }
     }
 
     /**
