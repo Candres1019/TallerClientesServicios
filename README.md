@@ -38,7 +38,7 @@ Adicionalmente se recomienda tener descargado los siguientes programas:
        ```
        git clone https://github.com/Candres1019/TallerClientesyServicios---AREP.git
        ```
-    - Para **Descargar** el proyecto de click [aquí](https://github.com/Candres1019/TallerClientesyServicios---AREP/archive/master.zip),
+    - Para **Descargar** el proyecto de click [aquí](https://github.com/Candres1019/TallerClientesServicios-AREP/archive/master.zip),
       la descarga comenzara de manera automática.
       
 2. En una ventana de comandos ejecute el siguiente comando, dentro de la carpeta principal del proyecto:
@@ -47,8 +47,13 @@ Adicionalmente se recomienda tener descargado los siguientes programas:
     ```
 
 3. Para ejecutar la aplicación de manera local utilizamos en la ventana de comandos el siguiente comando:
+    > * Distribuciones Linux y MacOs:
     > ```
-    > java -cp target/classes co.edu.escuelaing.demoruntime.DemoRunTime
+    > java $JAVA_OPTS -cp target/classes:target/dependency/* co.edu.escuelaing.demoruntime.DemoRunTime
+    > ```
+    > * Distribuciones Windows:
+    > ```
+    > java -cp target/classes;target/dependency/* co.edu.escuelaing.demoruntime.DemoRunTime
     > ```
     
 4. Para ver el aplicativo web de manera local ingresamos al siguiente enlace, dentro de este enlace encontrará los botones 
@@ -83,4 +88,4 @@ de archivos estáticos.
 * **Andres Mateo Calderón Ortega** - [Candres1019](https://github.com/Candres1019)
 
 # Licencia
-Este proyecto está licenciado bajo la GNU v3.0 - ver el archivo [LICENSE.md](https://github.com/Candres1019/TallerClientesyServicios---AREP/blob/master/LICENSE) para más detalles
+Este proyecto está licenciado bajo la GNU v3.0 - ver el archivo [LICENSE.md](https://github.com/Candres1019/TallerClientesServicios-AREP/blob/master/LICENSE) para más detalles
