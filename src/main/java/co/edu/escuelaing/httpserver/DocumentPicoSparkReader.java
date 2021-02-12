@@ -17,6 +17,7 @@ public class DocumentPicoSparkReader {
     private static final String jsPath = "src/main/resources/js/app.js";
     private static final String cssPath = "src/main/resources/css/style.css";
     private static final String viewPath = "src/main/resources/view.html";
+    private static final String datosIngresadosPath = "src/main/resources/datosIngresados.html";
 
     private static final String contentCss = "Content-Type: text/css";
     private static final String contentJs = "Content-Type: text/javascript";
@@ -110,6 +111,33 @@ public class DocumentPicoSparkReader {
             dataOutputStream.close();
         }catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para leer el archivo que contiene el verificador de ingreso de los datos.
+     * @return - archivoHtml en string
+     */
+    public static String datosIngresadosReader(){
+        try {
+            String temp = datosIngresadosPath;
+            String contenT = contentHtml;
+            String answer;
+            File archivo = new File(temp);
+            FileReader reader = new FileReader(archivo);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            answer = "HTTP/1.1 200 OK\r\n";
+            answer += (contenT + "\r\n") ;
+            answer += "\r\n" ;
+            String linea;
+            while ((linea=bufferedReader.readLine()) != null){
+                answer += (linea + "\n");
+            }
+            bufferedReader.close();
+            return answer;
+        }catch (IOException e){
+            e.printStackTrace();
+            return "";
         }
     }
 

@@ -1,6 +1,7 @@
 package co.edu.escuelaing.picosparkweb;
 
 import co.edu.escuelaing.calculator.CalculadoraEstadistica;
+import co.edu.escuelaing.httpserver.DocumentPicoSparkReader;
 import co.edu.escuelaing.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.http.HttpRequest;
@@ -96,22 +97,7 @@ public class PicoSparkServer implements Processor {
      * @return - html de datos de aceptacion.
      */
     private String validOkHtppHeaderDatos() {
-        return "HTTP/1.1 200 OK\r\n"
-                + "Content-Type: text/html\r\n"
-                + "\r\n"
-                + "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "<head>\n"
-                + "<meta charset=\"UTF-8\">\n"
-                + "<title>Datos Ingresados</title>\n"
-                + "</head>\n"
-                + "<body>\n"
-                + "<h1>Datos Ingresados</h1>\n"
-                + "<button onclick=\"window.location.href='/Apps/htmlShow';\">"
-                + "Devolverse\n"
-                + "<button/>\n"
-                + "</body>\n"
-                +"<html>\n";
+        return DocumentPicoSparkReader.datosIngresadosReader();
     }
 
     /**
@@ -137,7 +123,6 @@ public class PicoSparkServer implements Processor {
      * @param datosString - path a convertir a datos utiles.
      */
     private void handleDataDatos(String datosString){
-        System.out.println(datosString);
         String[] listDatos = datosString.split("");
         this.daticos = "";
         for(int i=0; i<listDatos.length; i++){

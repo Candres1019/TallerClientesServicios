@@ -62,16 +62,16 @@ public class HttpServer {
                 if(path.startsWith(key)){
                     String newPath = path.substring(key.length());
                     resp = routesToProcesssors.get(key).handle(newPath, null, null);
-                    if (resp.contains(".png")){
+                    if (resp.contains("teslaLogo.png")){
                         DocumentPicoSparkReader.imageReader(clientSocket);
-                    }else if (resp.contains(".html")){
+                    }else if (resp.contains("Onlyhello.html")){
                         DocumentPicoSparkReader.fileReader(clientSocket, "html");
-                    }else if (resp.contains(".js")){
+                    }else if (resp.contains("Onlyapp.js")){
                         DocumentPicoSparkReader.fileReader(clientSocket, "js");
                     }
-                    else if (resp.contains(".css")){
+                    else if (resp.contains("Onlystyle.css")){
                         DocumentPicoSparkReader.fileReader(clientSocket, "css");
-                    }else if(resp.contains(".view")){
+                    }else if(resp.contains("Onlydata.view")){
                         DocumentPicoSparkReader.viewReader(clientSocket);
                     }
                 }

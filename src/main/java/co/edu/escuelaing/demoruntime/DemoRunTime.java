@@ -16,11 +16,11 @@ public class DemoRunTime {
     public static void main(String[] args) throws IOException {
         port(getPort());
         get("/hello", (req, resp) -> "Hello world! from lambda");
-        get("/htmlShow", (req, resp) -> "hello.html");
-        get("/js/app.js", (req, resp) -> "app.js");
-        get("/imagenShow", (req, resp) -> "teslaLogo.png");
-        get("/css/style.css", (req, resp) -> "style.css");
-        get("/verDatos", (req, resp) -> "data.view");
+        get("/htmlShow", (req, resp) -> "Onlyhello.html");
+        get("/js/app.js", (req, resp) -> "Onlyapp.js");
+        get("/imagenShow", (req, resp) -> "OnlyteslaLogo.png");
+        get("/css/style.css", (req, resp) -> "Onlystyle.css");
+        get("/verDatos", (req, resp) -> "Onlydata.view");
         startServer();
     }
 
