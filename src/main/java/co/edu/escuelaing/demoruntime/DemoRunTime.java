@@ -4,14 +4,14 @@ import java.io.IOException;
 import static co.edu.escuelaing.picosparkweb.PicoSpark.*;
 
 /**
- *
+ * Clase DemoRunTime, encargada de hacer las solicitudes get y de iniciar el servidor.
  */
 public class DemoRunTime {
 
     /**
-     *
-     * @param args
-     * @throws IOException
+     * Metodo principal de la clase DemoRunTime.
+     * @param args - args.
+     * @throws IOException - IOException.
      */
     public static void main(String[] args) throws IOException {
         port(getPort());
@@ -20,12 +20,14 @@ public class DemoRunTime {
         get("/js/app.js", (req, resp) -> "app.js");
         get("/imagenShow", (req, resp) -> "teslaLogo.png");
         get("/css/style.css", (req, resp) -> "style.css");
+        get("/verDatos", (req, resp) -> "data.view");
         startServer();
     }
 
     /**
-     *
-     * @return
+     * Retorna el puerto por el que deberia correr el servidor, creado para evitar errores en un ambiente de
+     * despliegue no local
+     * @return - puerto.
      */
     private static int getPort() {
         if (System.getenv("PORT") != null) {
@@ -33,4 +35,5 @@ public class DemoRunTime {
         }
         return 3478;
     }
+
 }

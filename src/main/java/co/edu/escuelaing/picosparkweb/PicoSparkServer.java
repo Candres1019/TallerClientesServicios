@@ -1,18 +1,16 @@
 package co.edu.escuelaing.picosparkweb;
 
+import co.edu.escuelaing.calculator.CalculadoraEstadistica;
 import co.edu.escuelaing.httpserver.HttpServer;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
 /**
- *
+ * Clase PicoSparkServ,
  */
 public class PicoSparkServer implements Processor {
 
@@ -21,34 +19,34 @@ public class PicoSparkServer implements Processor {
     private int httPort=36000;
     Map<String, BiFunction<HttpRequest, HttpResponse, String>> functions = new HashMap<>();
     HttpServer hserver = new HttpServer();
-    private ArrayList<Double> datos;
+    private String daticos;
 
     /**
-     * Todo lo que llegue con el prefijo /Apps tomarlo para registrar en el servidor
+     * Controlar el flujo solo por el path /Apps
      */
     private PicoSparkServer(){
         hserver.registerProccessor("/Apps", this);
     }
 
     /**
-     *
-     * @return
+     * Pedir la instancia de la clase PicoSparkServer.
+     * @return - Instancia de la clase PicoSparkServer.
      */
     public static PicoSparkServer getInstance(){
         return  _instance;
     }
 
     /**
-     * Registrar los parametros que esta mandando el cliente
-     * @param route
-     * @param bifunc
+     * Resgistro de parametros que son enviados.
+     * @param route - path.
+     * @param bifunc - funcion lambda.
      */
     public void get(String route, BiFunction<HttpRequest, HttpResponse, String> bifunc){
         functions.put(route, bifunc);
     }
 
     /**
-     * Servidor para inicializar
+     * Iniciar el servidor.
      * @throws IOException
      */
     public void startServer() throws IOException {
@@ -56,16 +54,16 @@ public class PicoSparkServer implements Processor {
     }
 
     /**
-     *
-     * @param serverPort
+     * Obtener el puerto por donde correr.
+     * @param serverPort - puerto por donde correr.
      */
     public void port(int serverPort){
         this.httPort = serverPort;
     }
 
     /**
-     *
-     * @return
+     * Para retornar un header valido de error.
+     * @return - Cadena que contiene el html del error.
      */
     private String validErrorHtppHeader() {
         return "HTTP/1.1 400 Not Found\r\n"
@@ -75,7 +73,7 @@ public class PicoSparkServer implements Processor {
                 + "<html>\n"
                 + "<head>\n"
                 + "<meta charset=\"UTF-8\">\n"
-                + "<title>Title of the document</title>\n"
+                + "<title>Error</title>\n"
                 + "</head>\n"
                 + "<body>\n"
                 + "<h1>I Found and Error</h1>\n"
@@ -84,8 +82,8 @@ public class PicoSparkServer implements Processor {
     }
 
     /**
-     *
-     * @return
+     * Para retornar un header valido de 200.
+     * @return - Cadena que contiene el html del 200.
      */
     private String validOkHtppHeader() {
         return "HTTP/1.1 200 OK\r\n"
@@ -94,8 +92,8 @@ public class PicoSparkServer implements Processor {
     }
 
     /**
-     *
-     * @return
+     * Para retornar el header que contendra los datos.
+     * @return - html de datos de aceptacion.
      */
     private String validOkHtppHeaderDatos() {
         return "HTTP/1.1 200 OK\r\n"
@@ -109,22 +107,22 @@ public class PicoSparkServer implements Processor {
                 + "</head>\n"
                 + "<body>\n"
                 + "<h1>Datos Ingresados</h1>\n"
+                + "<button onclick=\"window.location.href='/Apps/htmlShow';\">"
+                + "Devolverse\n"
+                + "<button/>\n"
                 + "</body>\n"
                 +"<html>\n";
     }
 
     /**
-     *
-     * @param path
-     * @param req
-     * @param resp
-     * @return
+     * Metodo para manejar las peticiones.
+     * @param path -link path.
+     * @param req -
+     * @param resp -
+     * @return - Cadena html dependiendo del tipo.
      */
     @Override
     public String handle(String path, HttpRequest req, HttpResponse resp) {
-        System.out.println("------------------------------------------------------");
-        System.out.println(path);
-        System.out.println("------------------------------------------------------");
         if(functions.containsKey(path)){
             return validOkHtppHeader() + functions.get(path).apply(req, resp);
         }else if(path.contains("datos")){
@@ -134,19 +132,23 @@ public class PicoSparkServer implements Processor {
         return validErrorHtppHeader() +" Error";
     }
 
+    /**
+     * Clase para manejar la peticion cuando
+     * @param datosString - path a convertir a datos utiles.
+     */
     private void handleDataDatos(String datosString){
         System.out.println(datosString);
         String[] listDatos = datosString.split("");
-        String daticosN = "";
+        this.daticos = "";
         for(int i=0; i<listDatos.length; i++){
-            System.out.println("ENTRO" + i);
             if(listDatos[i].equals("=")){
-                System.out.println("ENTRO Igu");
-                daticosN = datosString.substring(i, datosString.length());
+                this.daticos = datosString.substring(i+1, datosString.length());
                 break;
             }
         }
-        System.out.println(daticosN);
+        CalculadoraEstadistica calculadoraEstadistica = new CalculadoraEstadistica();
+        calculadoraEstadistica.stringToLinkedList(daticos);
+        calculadoraEstadistica.guardarDatosEnDB();
     }
 
 }

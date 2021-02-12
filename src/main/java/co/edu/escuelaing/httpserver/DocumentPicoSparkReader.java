@@ -1,9 +1,11 @@
 package co.edu.escuelaing.httpserver;
 
+import co.edu.escuelaing.persistence.DataBaseJDBC;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * Clase aparte que maneja los recursos para ser mostrados.
@@ -14,14 +16,15 @@ public class DocumentPicoSparkReader {
     private static final String htmlPath = "src/main/resources/hello.html";
     private static final String jsPath = "src/main/resources/js/app.js";
     private static final String cssPath = "src/main/resources/css/style.css";
+    private static final String viewPath = "src/main/resources/view.html";
 
     private static final String contentCss = "Content-Type: text/css";
     private static final String contentJs = "Content-Type: text/javascript";
     private static final String contentHtml = "Content-Type: text/html";
 
     /**
-     *
-     * @param clientSocket -
+     * Metodo para leer archivos de tipo imagen.
+     * @param clientSocket - clientSocket.
      */
     public static void imageReader(Socket clientSocket){
         try {
@@ -39,8 +42,8 @@ public class DocumentPicoSparkReader {
     }
 
     /**
-     *
-     * @param clientSocket -
+     * Metodo para leer archivos js, css y html
+     * @param clientSocket - clientSocket.
      */
     public static void fileReader(Socket clientSocket, String tipo){
         try {
@@ -64,22 +67,46 @@ public class DocumentPicoSparkReader {
             File archivo = new File(temp);
             FileReader reader = new FileReader(archivo);
             BufferedReader bufferedReader = new BufferedReader(reader);
-            /*PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream());*/
             DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
             dataOutputStream.writeBytes("HTTP/1.1 200 OK");
-            //printWriter.println("HTTP/1.1 200 OK");
             dataOutputStream.writeBytes(contenT);
-            //printWriter.println(contenT);
             String linea;
             while ((linea=bufferedReader.readLine()) != null){
-                System.out.println(linea);
-                //printWriter.println(linea + "\r\n");
-                //printWriter.println("\r\n");
                 dataOutputStream.writeBytes(linea + "\r\n");
                 dataOutputStream.writeBytes("\r\n");
             }
             bufferedReader.close();
-            //printWriter.close();
+            dataOutputStream.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para leer el archivo que contiene el visualizador de los datos.
+     * @param clientSocket - clientSocket.
+     */
+    public static void viewReader(Socket clientSocket){
+        try {
+            DataBaseJDBC dataBaseJDBC = new DataBaseJDBC();
+            File archivo = new File(viewPath);
+            FileReader reader = new FileReader(archivo);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+            dataOutputStream.writeBytes("HTTP/1.1 200 OK");
+            dataOutputStream.writeBytes(contentHtml);
+            String linea;
+            while ((linea=bufferedReader.readLine()) != null){
+                if(linea.contains("</table>")){
+                    ArrayList<String> dataTableMid = dataBaseJDBC.consultarDatos();
+                    for (String string : dataTableMid){
+                        dataOutputStream.writeBytes(string);
+                    }
+                }
+                dataOutputStream.writeBytes(linea + "\r\n");
+                dataOutputStream.writeBytes("\r\n");
+            }
+            bufferedReader.close();
             dataOutputStream.close();
         }catch (IOException e){
             e.printStackTrace();

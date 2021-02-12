@@ -13,7 +13,7 @@
     <h2 class="headertext">LAB03 - AREP</h2>
 
     <div class="vertical-center">
-        <button onclick="app.getDatos()" class="w3-button w3-green w3-large">Ingresar Datos</button>
+        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large">Ingresar Datos</button>
     </div>
     <div id="id01" class="w3-modal">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
@@ -22,15 +22,20 @@
                 <div class="w3-section">
                     <label><b>Datos</b></label>
                     <input id="datos" name="datos" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="1 2 3 4 5 ... 9" >
-                    <label><b>Para mandar los datos presiona ENTER</b></label>
+                    <div class="vertical-center">
+                        <button onclick="app.sendDatos()" class="w3-button w3-green w3-large" >Enviar</button>
+                    </div>
                 </div>
             </form>
 
             <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+                <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancelar</button>
             </div>
-
         </div>
+    </div>
+    <div class="vertical-center">
+        <br>
+        <button onclick="window.location.href='/Apps/verDatos'" class="w3-button w3-green w3-large">Ver Datos</button>
     </div>
 </div>
 

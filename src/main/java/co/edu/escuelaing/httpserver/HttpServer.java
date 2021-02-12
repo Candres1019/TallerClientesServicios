@@ -1,14 +1,13 @@
 package co.edu.escuelaing.httpserver;
 
 import co.edu.escuelaing.picosparkweb.Processor;
-
 import java.net.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Servidor Http
  */
 public class HttpServer {
 
@@ -16,9 +15,9 @@ public class HttpServer {
     Map<String, Processor> routesToProcesssors = new HashMap();
 
     /**
-     *
-     * @param httPort
-     * @throws IOException
+     * Iniciador del servidor Http
+     * @param httPort - puerto por donde debe correr el servicio
+     * @throws IOException - IOException
      */
     public void startServer(int httPort) throws IOException {
         port = httPort;
@@ -72,6 +71,8 @@ public class HttpServer {
                     }
                     else if (resp.contains(".css")){
                         DocumentPicoSparkReader.fileReader(clientSocket, "css");
+                    }else if(resp.contains(".view")){
+                        DocumentPicoSparkReader.viewReader(clientSocket);
                     }
                 }
             }
@@ -91,32 +92,32 @@ public class HttpServer {
     }
 
     /**
-     *
-     * @return
+     * Solicitar el puerto asignado al servidor.
+     * @return - puerto del servidor.
      */
     public int getPort(){
         return this.port=port;
     }
 
     /**
-     *
-     * @param port
+     * Modificar el puerto del servidor.
+     * @param port - Nuevo puerto para que el serividor corra.
      */
     public void setPort(int port){
         this.port=port;
     }
 
     /**
-     *
-     * @param path
-     * @param proccessor
+     * Metodo para registrar el nuevo processor.
+     * @param path -
+     * @param proccessor -
      */
     public void registerProccessor(String path, Processor proccessor) {
         routesToProcesssors.put(path,proccessor);
     }
 
     /**
-     *
+     * Metodo para retornar un html de respuesta valido.
      * @return
      */
     public String validOkHtppResponse() {
@@ -127,10 +128,10 @@ public class HttpServer {
                 + "<html>\n"
                 + "<head>\n"
                 + "<meta charset=\"UTF-8\">\n"
-                + "<title>Title of the document</title>\n"
+                + "<title>LAB03</title>\n"
                 + "</head>\n"
                 + "<body>\n"
-                + "<h1> mi propio mensaje</h1>\n"
+                + "<h1> Mi Propio Mensaje</h1>\n"
                 + "</body>\n"
                 +"<html>\n";
     }

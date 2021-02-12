@@ -3,14 +3,12 @@ const app = (function () {
 
     function cargando(){
         console.log("JavaScript Cargado De Manera Satisfactoria");
-    };
+    }
 
-    function getDatos(){
-        const info = $("#datos").val();
+    function sendDatos(){
         const promise = $.get({
             url: "/Apps/hello",
             contentType: "application/json",
-            data: JSON.stringify(info),
         });
         promise.then(function(data){
             console.log(data);
