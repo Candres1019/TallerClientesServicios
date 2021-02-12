@@ -17,6 +17,7 @@ public class CalculadoraEstadistica {
     private Double desviacionEstandar;
     private Double suma;
     private String daticosS;
+    private boolean errorOcurred = false;
 
     /**
      * Constructor de la clase CalculadoraEstadistica
@@ -99,13 +100,18 @@ public class CalculadoraEstadistica {
      * @param datosString - Cadena de datos a convertir
      */
     public void stringToLinkedList(String datosString){
-        this.daticosS = "";
-        this.datos = new LinkedListImp();
-        String [] dataString = datosString.split("\\+");
-        for (String dato : dataString) {
-            this.daticosS = daticosS + dato;
-            this.daticosS = daticosS + " ";
-            this.datos.add(Double.valueOf(dato));
+        try {
+            this.errorOcurred = false;
+            this.daticosS = "";
+            this.datos = new LinkedListImp();
+            String[] dataString = datosString.split("\\+");
+            for (String dato : dataString) {
+                this.daticosS = daticosS + dato;
+                this.daticosS = daticosS + " ";
+                this.datos.add(Double.valueOf(dato));
+            }
+        }catch (Exception e){
+            this.errorOcurred = true;
         }
     }
 
@@ -122,4 +128,11 @@ public class CalculadoraEstadistica {
         }
     }
 
+    /**
+     * Revisar si ha ocurrido algun error al momento de convertir los datos
+     * @return - si hubo o no error.
+     */
+    public boolean isErrorOcurred() {
+        return errorOcurred;
+    }
 }
