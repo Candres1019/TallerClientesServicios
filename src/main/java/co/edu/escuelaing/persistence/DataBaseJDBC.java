@@ -84,7 +84,7 @@ public class DataBaseJDBC {
             }
         }
         ArrayList<String> daticosTemp = new ArrayList<>();
-        daticosTemp.add("Couldnt Stablish a connection, Try Again");
+        daticosTemp.add("<th>" + "Couldn't establish a connection after " + connectionTry + "attempts" +", Try Again" + "</th>\n");
         return daticosTemp;
     }
 
