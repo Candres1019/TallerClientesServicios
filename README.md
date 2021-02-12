@@ -29,7 +29,7 @@ Adicionalmente se recomienda tener descargado los siguientes programas:
 ### Calidad del código
 
 ### Integración Continua
-[![CircleCI](https://circleci.com/gh/Candres1019/TallerClientesServicios-AREP.svg?style=svg)](https://app.circleci.com/pipelines/github/Candres1019/TallerClientesServicios-AREP)
+[![CircleCI](https://circleci.com/gh/Candres1019/TallerClientesServicios.svg?style=svg)](https://app.circleci.com/pipelines/github/Candres1019/TallerClientesServicios)
 
 ### Instalación
 
