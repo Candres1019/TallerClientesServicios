@@ -15,9 +15,10 @@
     <div class="vertical-center">
         <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large">Ingresar Datos</button>
     </div>
+
+    <!-- Para Ingresar Datos -->
     <div id="id01" class="w3-modal">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-
             <form class="w3-container">
                 <div class="w3-section">
                     <label><b>Datos</b></label>
@@ -27,15 +28,34 @@
                     </div>
                 </div>
             </form>
-
             <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
                 <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancelar</button>
             </div>
         </div>
     </div>
+
+    <!-- Para ver los datos -->
     <div class="vertical-center">
         <br>
         <button onclick="window.location.href='/Apps/verDatos'" class="w3-button w3-green w3-large">Ver Datos</button>
+    </div>
+
+    <!-- Para ver la imagen -->
+    <div class="vertical-center">
+        <br>
+        <button onclick="window.location.href='/Apps/imagenShow'" class="w3-button w3-green w3-large">Ver Imagen</button>
+    </div>
+
+    <!-- Para ver el archivo js -->
+    <div class="vertical-center">
+        <br>
+        <button onclick="window.location.href='/Apps/js/app.js'" class="w3-button w3-green w3-large">Ver JavaScript</button>
+    </div>
+
+    <!-- Para ver el archivo css -->
+    <div class="vertical-center">
+        <br>
+        <button onclick="window.location.href='/Apps/css/style.css'" class="w3-button w3-green w3-large">Ver CSS</button>
     </div>
 </div>
 

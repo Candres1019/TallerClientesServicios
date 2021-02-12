@@ -18,6 +18,7 @@ public class DataBaseConnectionJDBC {
     public DataBaseConnectionJDBC(){
         try {
             Class.forName(driver);
+            DriverManager.registerDriver(new org.postgresql.Driver());
             connection = DriverManager.getConnection(url, user, pwd);
             connection.setAutoCommit(false);
         } catch (ClassNotFoundException | SQLException e) {
