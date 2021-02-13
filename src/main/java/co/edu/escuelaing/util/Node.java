@@ -4,8 +4,8 @@ package co.edu.escuelaing.util;
  * Clase Node, utilizada en la lista enlazada.
  */
 public class Node {
-    Double datos;
-    Node next;
+    private Double datos;
+    public Node next;
 
     /**
      * Metodo constructor del nodo.

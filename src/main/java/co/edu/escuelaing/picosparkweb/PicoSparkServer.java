@@ -16,10 +16,10 @@ import java.util.function.BiFunction;
 public class PicoSparkServer implements Processor {
 
     private static PicoSparkServer _instance = new PicoSparkServer();
-    private int port;
+    /*private int port;*/
     private int httPort=36000;
-    Map<String, BiFunction<HttpRequest, HttpResponse, String>> functions = new HashMap<>();
-    HttpServer hserver = new HttpServer();
+    private Map<String, BiFunction<HttpRequest, HttpResponse, String>> functions = new HashMap<>();
+    private HttpServer hserver = new HttpServer();
     private String daticos;
 
     /**

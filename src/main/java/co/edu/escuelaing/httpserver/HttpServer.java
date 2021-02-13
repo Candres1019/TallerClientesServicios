@@ -12,7 +12,7 @@ import java.util.Map;
 public class HttpServer {
 
     private int port;
-    Map<String, Processor> routesToProcesssors = new HashMap();
+    private Map<String, Processor> routesToProcesssors = new HashMap();
 
     /**
      * Iniciador del servidor Http
@@ -42,7 +42,8 @@ public class HttpServer {
 
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            String inputLine, outputLine;
+            String inputLine;
+            String outputLine;
 
             boolean isFirstLine = true;
             String path = "";

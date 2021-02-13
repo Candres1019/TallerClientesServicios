@@ -53,7 +53,9 @@ public class CalculadoraEstadistica {
      * @return Desviacion Estandar de los datos guardados en la lista enlazada
      */
     public Double calcularDesviacionEstandar(){
-        Double restaCuadradosTemp, suma, division;
+        Double restaCuadradosTemp;
+        Double suma;
+        Double division;
         desviacionEstandar = 0.0;
         suma = 0.0;
         calcularMedia();

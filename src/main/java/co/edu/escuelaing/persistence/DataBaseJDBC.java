@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class DataBaseJDBC {
 
-    private static DataBaseConnectionJDBC dataBaseConnectionJDBC;
     private static Connection connection;
     private boolean connectionState = false;
     private final int connectionTry = 3;
@@ -21,7 +20,7 @@ public class DataBaseJDBC {
      */
     public DataBaseJDBC(){
         for (int i=0; i<connectionTry; i++){
-            dataBaseConnectionJDBC = new DataBaseConnectionJDBC();
+            DataBaseConnectionJDBC dataBaseConnectionJDBC = new DataBaseConnectionJDBC();
             connection = DataBaseConnectionJDBC.getConnection();
             connectionState = connection != null;
             if (connectionState){

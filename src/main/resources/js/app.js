@@ -19,7 +19,7 @@ const app = (function () {
 
     return {
         cargando: cargando,
-        getDatos : getDatos
+        sendDatos : sendDatos,
     }
 
 })();
