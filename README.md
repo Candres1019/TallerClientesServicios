@@ -10,7 +10,7 @@ devuelve archivos estáticos para ser visualizados por el usuario, estos archivo
 
 * La documentación del las clases y los metodos del proyecto se encuentran en el directorio adjunto /Javadoc/apidocs.
 
-* Haga click [aqui](./Reporte_TalleClientesyServicios.pdf) para ver el reporte del proyecto.
+* Haga click [aqui](./TallerClientesServicios.pdf) para ver el reporte del proyecto.
 
 ### Pre-Requisitos
 
@@ -74,8 +74,6 @@ En una ventana de comandos, utilice el siguiente comando:
    ```
     mvn test
    ```
-Estas pruebas están hechas para asegurar el correcto funcionamiento de la conexión con la base de datos y la devolución 
-de archivos estáticos.
 
 ## Construido Con
 
