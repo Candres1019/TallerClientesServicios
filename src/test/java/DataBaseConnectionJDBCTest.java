@@ -1,17 +1,27 @@
 import co.edu.escuelaing.persistence.DataBaseConnectionJDBC;
 import co.edu.escuelaing.persistence.DataBaseJDBC;
-import org.junit.Test;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DataBaseConnectionJDBCTest {
 
     @Test
     public void canMakeConnection(){
-        DataBaseConnectionJDBC dataBaseConnectionJDBC = new DataBaseConnectionJDBC();
+        Boolean connectionState = false;
+        DataBaseConnectionJDBC dataBaseConnectionJDBC;
+        for (int i=0; i<3; i++){
+            dataBaseConnectionJDBC = new DataBaseConnectionJDBC();
+            Connection connection = DataBaseConnectionJDBC.getConnection();
+            connectionState = connection != null;
+            if (connectionState){
+                break;
+            }
+        }
+        assertTrue(connectionState);
     }
 
     /*@Test
