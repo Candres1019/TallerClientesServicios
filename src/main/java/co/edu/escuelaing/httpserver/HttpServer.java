@@ -131,7 +131,7 @@ public class HttpServer {
                 + "<title>LAB03</title>\n"
                 + "</head>\n"
                 + "<body>\n"
-                + "<h1> Mi Propio Mensaje</h1>\n"
+                + "<h1> Dirección No Válida, Use /Apps</h1>\n"
                 + "</body>\n"
                 +"<html>\n";
     }
